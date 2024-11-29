@@ -1,3 +1,6 @@
 altair
 pandas
 streamlit
+google-generativeai
+numpy
+scikit-learn
