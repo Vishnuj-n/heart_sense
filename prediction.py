@@ -35,7 +35,16 @@ def predict_heart_disease(user_data):
     
     return prediction[0]
 
+def get_accuracy():
+    #Calculate accuracy on the test set
+    y_pred = model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    accuracy_percentage = accuracy * 100
+    print("Accuracy on test set:", accuracy_percentage,"%")
+    return accuracy_percentage
+
 # Example usage (simulating frontend input):
+"""
 user_data = [51,1,2,94,227,0,0,154,1,0,0,1,3]
 prediction_result = predict_heart_disease(user_data)
 print(f"Target: {prediction_result}")
@@ -48,9 +57,5 @@ print(f"Sex: {'Male' if sex == 1 else 'Female'}")
 if prediction_result == 0:
     print('The Person does not have a Heart Disease')
 else:
-    print('The Person has Heart Disease')
-
-# Calculate accuracy on the test set
-y_pred = model.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-print("Accuracy on test set:", accuracy * 100,"%")
+    print('The Person has Heart Disease')
+"""
