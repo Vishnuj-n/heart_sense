@@ -39,10 +39,10 @@ def get_health_recommendations(prediction, sex, age, accuracy):
     <basic information of patient in numbered  points in natural language >
 
     #Recommendations:
-    doctor_consultation:<"if required `yes` else `no`">
+    <doctor_consultation:<"if required `yes` else `no`">
     tests:<if required `yes` else `no`. if `yes` suggestions >
     physical_activity:<excerise/yoga/ recommended for heart patients if target ='1' else some good physical_activity >
-    warning:<this is model prediction which can't replace the need for professional medical evaluation>
+    warning:<this is model prediction which can't replace the need for professional medical evaluation>>
 
     #Reducing Impact (Patient Communication):
     < 5 numbered points on patient communication >
