@@ -24,18 +24,19 @@ def get_health_recommendations(prediction, sex, age, accuracy):
     """
 
     instruction = """
-    
+    you will be provided information with triple backticks.Write ways to reduce impact and request patient if needed to doctor or tests needed to be taken consultation and patient information with recommendation .
     target:0 = No presence of heart disease
     target:1 = presence of heart disease
     sex:1 = Male
     sex:0 = Female
     age: <age of the human>
     machine_learning_model_accuracy:<accuracy of the model>
+    
     """
 
-    format = """
+    output_format = """
     #Patient Information:
-    <basic information of patient in numbered  points >
+    <basic information of patient in numbered  points in natural language >
 
     #Recommendations:
     doctor_consultation:<"if required `yes` else `no`">
@@ -47,8 +48,7 @@ def get_health_recommendations(prediction, sex, age, accuracy):
     < 5 numbered points on patient communication >
     """
 
-    prompt = f"write ways to reduce impact and request patient if needed to doctor or tests needed to be taken consultation based on the instruction and input delimited in triple backticks```{input_data}```" + instruction + format
-    
+    prompt = instruction + output_format+f" '''{input_data}'''" 
     model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(prompt)
     return response.text
