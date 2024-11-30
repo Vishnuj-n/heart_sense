@@ -10,13 +10,13 @@ A simple Streamlit app that draws a spiral.
 1. Install the requirements
 
    ```
-   $ pip install -r requirements.txt
+   pip install -r requirements.txt
    ```
 
 2. Run the app
 
    ```
-   $ streamlit run streamlit_app.py
+   streamlit run streamlit_app.py
    ```
 3. Get started with the Gemini API
    1. Go to [Google AI Studio](https://aistudio.google.com/).
