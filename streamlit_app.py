@@ -1,14 +1,25 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from prediction import predict_heart_disease
+from prediction import predict_heart_disease, get_accuracy
+from geminai import configure_genai, get_health_recommendations
 
-st.title('Heart Disease Prediction Q&A')
+st.title('Heart Disease Prediction - Q&A')
 
 st.write("""
 This app predicts whether a person has heart disease based on their medical attributes.
 Please answer the following questions:
 """)
+
+api_key = st.text_input('Enter your GEMINI API Key:', type='password')
+
+if api_key:
+    try:
+        # Configure Gemini with provided API key
+        configure_genai(api_key)
+        st.success("API key configured successfully!")
+    except Exception as e:
+        st.error(f"Error configuring API key: {str(e)}")
 
 # Age
 age = st.number_input('What is your age?', min_value=20, max_value=100, value=45)
@@ -66,17 +77,33 @@ thal = st.selectbox('What is your thalassemia type?',
     ['Normal', 'Fixed defect', 'Reversible defect'])
 thal_encoded = ['Normal', 'Fixed defect', 'Reversible defect'].index(thal) + 1
 
+# In streamlit_app.py
 if st.button('Predict'):
     user_data = [age, sex_encoded, cp_encoded, trestbps, chol, fbs_encoded, 
                  restecg_encoded, thalach, exang_encoded, oldpeak, slope_encoded, 
                  ca, thal_encoded]
     
     prediction = predict_heart_disease(user_data)
+    accuracy = get_accuracy()
+    
+    # Get health recommendations
+    recommendations = get_health_recommendations(
+        prediction=prediction,
+        sex=sex_encoded,
+        age=age,
+        accuracy=accuracy
+    )
     
     st.header('Prediction Result:')
     if prediction == 0:
         st.success('Good news! The model predicts you do not have heart disease.')
     else:
         st.warning('The model predicts you may have heart disease. Please consult a healthcare professional.')
+    
+    # Display accuracy and recommendations
+    st.write(f'Model Accuracy: {accuracy:.2f}%')
+    st.subheader('Health Recommendations:')
+    st.write(recommendations)
         
     st.write('Note: This is a preliminary screening tool and should not be used as a substitute for professional medical advice.')
+    st.write('For more information, please consult your healthcare provider.')
