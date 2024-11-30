@@ -54,24 +54,3 @@ else:
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy on test set:", accuracy * 100,"%")
-if __name__ == "__main__":
-    # Assuming main.py collects user_data and saves it to a file or a variable
-    
-    prediction_result = predict_heart_disease(user_data)
-    print(f"Target: {prediction_result}")
-    
-    # Print age and sex from user_data
-    age = user_data[0]
-    sex = user_data[1]
-    print(f"Age: {age}")
-    print(f"Sex: {'Male' if sex == 1 else 'Female'}")
-    
-    if prediction_result == 0:
-        print('The Person does not have a Heart Disease')
-    else:
-        print('The Person has Heart Disease')
-    
-    # Calculate accuracy on the test set
-    y_pred = model.predict(X_test)
-    accuracy = accuracy_score(y_test, y_pred)
-    print("Accuracy on test set:", accuracy * 100, "%")
