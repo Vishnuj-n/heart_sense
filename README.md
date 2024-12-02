@@ -1,7 +1,7 @@
 # ❤️ Heart Sense 
 
 
-A simple Streamlit app that draws a spiral. 
+An Heart Disease Prediction Website
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://basic-template.streamlit.app/)
 
